@@ -174,5 +174,64 @@
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
+/* ============================= */
+/*        RESPONSIVE MOBILE      */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .navbar a {
+    margin-left: 14px;
+    font-size: 14px;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 85vh;
+    padding-top: 100px;
+  }
+
+  .hero-title {
+    font-size: 26px;
+    letter-spacing: 1px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+  }
+
+  .hero-content {
+    padding: 24px;
+  }
+
+  /* TORNEOS */
+  #torneosContainer {
+    gap: 20px;
+  }
+
+  .torneo-card {
+    width: 90%;
+  }
+
+  .torneo-img {
+    height: 320px;
+  }
+
+  /* SECCIONES */
+  .section {
+    padding: 50px 20px;
+  }
+
+  /* PAGOS */
+  .pagos-card {
+    margin: 30px 20px;
+    padding: 24px;
+  }
+}
 
 
