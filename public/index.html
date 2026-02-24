@@ -25,8 +25,8 @@
 <section class="hero">
   <div class="hero-overlay"></div>
 
-  <div class="hero-content">
-    <h1 class="hero-title" style="font-size: 72px; letter-spacing: 6px;">
+  <div class="hero-content hero-animate">
+    <h1 class="hero-title hero-mask">
       POINT MASTERS
     </h1>
 
@@ -50,27 +50,114 @@
 </section>
 
 <!-- TORNEOS DINÁMICOS -->
-<section id="torneos" class="section">
+<section id="torneos" class="section fade-section">
   <h2>Torneos Activos</h2>
   <div id="torneosContainer"></div>
 </section>
 
 <!-- RESULTADOS -->
-<section id="resultados" class="section section-alt">
+<section id="resultados" class="section section-alt fade-section">
   <h2>Resultados en Tiempo Real</h2>
   <div id="resultadosContainer"></div>
 </section>
 
 <!-- PAGOS -->
-<section id="pagos" class="section">
+<section id="pagos" class="section fade-section">
   <h2>Datos de Transferencia</h2>
   <div id="datosPago"></div>
 </section>
 
 <script src="/js/main.js"></script>
 
+<script>
+/* HERO ENTRY ANIMATION */
+document.addEventListener("DOMContentLoaded", function() {
+
+  const hero = document.querySelector(".hero-animate");
+  const title = document.querySelector(".hero-mask");
+
+  setTimeout(() => {
+    hero.classList.add("show");
+  }, 200);
+
+  setTimeout(() => {
+    title.classList.add("activate-mask");
+  }, 800);
+
+});
+
+/* FADE ON SCROLL */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll(".fade-section").forEach(section => {
+  observer.observe(section);
+});
+</script>
+
 </body>
 </html>
+/* ========================= */
+/* HERO ENTRY ANIMATION */
+/* ========================= */
+
+.hero-animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s ease;
+}
+
+.hero-animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* TEXT MASK EFFECT */
+
+.hero-mask {
+  font-size: 72px;
+  letter-spacing: 6px;
+  background: linear-gradient(90deg, #ffffff, #1db954, #ffffff);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.hero-mask.activate-mask {
+  opacity: 1;
+  transform: translateY(0);
+  animation: gradientMove 3s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ========================= */
+/* FADE SECTIONS */
+/* ========================= */
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 
 
