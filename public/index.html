@@ -14,7 +14,7 @@
       <a href="#torneos">Torneos</a>
       <a href="#resultados">Resultados</a>
       <a href="#pagos">Transferencia</a>
-      <a href="/admin.html" class="admin-link">Admin</a>
+      <a href="/admin.html">Admin</a>
     </nav>
   </div>
 </header>
@@ -23,7 +23,7 @@
   <div class="hero-overlay"></div>
 
   <div class="hero-content hero-animate">
-    <h1 class="hero-title hero-mask">
+    <h1 class="hero-mask">
       POINT MASTERS
     </h1>
 
@@ -62,6 +62,35 @@
 </section>
 
 <script src="/js/main.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const hero = document.querySelector(".hero-animate");
+  const title = document.querySelector(".hero-mask");
+
+  if (hero) {
+    setTimeout(() => hero.classList.add("show"), 200);
+  }
+
+  if (title) {
+    setTimeout(() => title.classList.add("activate-mask"), 800);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll(".fade-section").forEach(section => {
+    observer.observe(section);
+  });
+
+});
+</script>
 
 </body>
 </html>
