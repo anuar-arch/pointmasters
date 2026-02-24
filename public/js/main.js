@@ -7,6 +7,11 @@ const torneos = [
   { flyer: "/media/flyer4ta.jpg" }
 ];
 
+const resultados = [
+  { imagen: "/media/resultado1.jpg" },
+  { imagen: "/media/resultado2.jpg" }
+];
+
 const pagos = {
   banco: "MULTIVA",
   titular: "POINT MASTERS",
@@ -25,6 +30,17 @@ function renderTorneos() {
   contenedor.innerHTML = torneos.map(t => `
     <div class="torneo-card">
       <img src="${t.flyer}" class="torneo-img">
+    </div>
+  `).join("");
+}
+
+function renderResultados() {
+  const contenedor = document.getElementById("resultadosContainer");
+  if (!contenedor) return;
+
+  contenedor.innerHTML = resultados.map(r => `
+    <div class="resultado-card">
+      <img src="${r.imagen}" class="resultado-img">
     </div>
   `).join("");
 }
@@ -49,18 +65,22 @@ function renderPagos() {
 document.addEventListener("DOMContentLoaded", () => {
 
   renderTorneos();
+  renderResultados();
   renderPagos();
 
-  // HERO ANIMATION
-  const hero = document.querySelector(".hero-content");
+  // HERO ENTRY
+  const hero = document.querySelector(".hero-animate");
+  const title = document.querySelector(".hero-mask");
 
   if (hero) {
-    setTimeout(() => {
-      hero.classList.add("hero-visible");
-    }, 300);
+    setTimeout(() => hero.classList.add("show"), 200);
   }
 
-  // FADE SECTIONS
+  if (title) {
+    setTimeout(() => title.classList.add("activate-mask"), 800);
+  }
+
+  // FADE ON SCROLL
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
