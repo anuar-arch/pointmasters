@@ -8,8 +8,8 @@ const torneos = [
 ];
 
 const resultados = [
-  { imagen: "/media/resultado1.jpg" },
-  { imagen: "/media/resultado2.jpg" }
+  // Aquí luego podremos agregar imágenes dinámicamente
+  // { imagen: "/media/resultado1.jpg" }
 ];
 
 const pagos = {
@@ -20,7 +20,7 @@ const pagos = {
 };
 
 /* =========================
-   RENDER FUNCTIONS
+   RENDER TORNEOS
 ========================= */
 
 function renderTorneos() {
@@ -34,9 +34,18 @@ function renderTorneos() {
   `).join("");
 }
 
+/* =========================
+   RENDER RESULTADOS
+========================= */
+
 function renderResultados() {
   const contenedor = document.getElementById("resultadosContainer");
   if (!contenedor) return;
+
+  if (resultados.length === 0) {
+    contenedor.innerHTML = "";
+    return;
+  }
 
   contenedor.innerHTML = resultados.map(r => `
     <div class="resultado-card">
@@ -44,6 +53,10 @@ function renderResultados() {
     </div>
   `).join("");
 }
+
+/* =========================
+   RENDER PAGOS
+========================= */
 
 function renderPagos() {
   const contenedor = document.getElementById("datosPago");
@@ -53,9 +66,34 @@ function renderPagos() {
     <div class="pagos-card">
       <p><strong>Banco:</strong> ${pagos.banco}</p>
       <p><strong>Titular:</strong> ${pagos.titular}</p>
-      <p><strong>CLABE:</strong> ${pagos.clabe}</p>
+      <p><strong>CLABE:</strong> <span id="clabeTexto">${pagos.clabe}</span></p>
+
+      <div style="margin-top:20px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+
+        <button onclick="copiarClabe()" class="btn-secondary">
+          Copiar CLABE
+        </button>
+
+        <a 
+          href="https://wa.me/${pagos.whatsapp}?text=Hola,%20envío%20mi%20comprobante%20de%20pago"
+          target="_blank"
+          class="btn-primary">
+          Enviar comprobante
+        </a>
+
+      </div>
     </div>
   `;
+}
+
+/* =========================
+   COPY CLABE
+========================= */
+
+function copiarClabe() {
+  const texto = document.getElementById("clabeTexto").innerText;
+  navigator.clipboard.writeText(texto);
+  alert("CLABE copiada");
 }
 
 /* =========================
@@ -67,30 +105,5 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTorneos();
   renderResultados();
   renderPagos();
-
-  // HERO ENTRY
-  const hero = document.querySelector(".hero-animate");
-  const title = document.querySelector(".hero-mask");
-
-  if (hero) {
-    setTimeout(() => hero.classList.add("show"), 200);
-  }
-
-  if (title) {
-    setTimeout(() => title.classList.add("activate-mask"), 800);
-  }
-
-  // FADE ON SCROLL
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.2 });
-
-  document.querySelectorAll(".fade-section").forEach(section => {
-    observer.observe(section);
-  });
 
 });
