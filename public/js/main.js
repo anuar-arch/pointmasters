@@ -1,3 +1,7 @@
+/* =========================
+   DATA
+========================= */
+
 const torneos = [
   { flyer: "/media/flyer3ra.jpg" },
   { flyer: "/media/flyer4ta.jpg" }
@@ -9,6 +13,10 @@ const pagos = {
   clabe: "PENDIENTE",
   whatsapp: "5215568016634"
 };
+
+/* =========================
+   RENDER FUNCTIONS
+========================= */
 
 function renderTorneos() {
   const contenedor = document.getElementById("torneosContainer");
@@ -34,6 +42,10 @@ function renderPagos() {
   `;
 }
 
+/* =========================
+   INIT
+========================= */
+
 document.addEventListener("DOMContentLoaded", () => {
 
   renderTorneos();
@@ -41,10 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // HERO ANIMATION
   const hero = document.querySelector(".hero-content");
+
   if (hero) {
     setTimeout(() => {
       hero.classList.add("hero-visible");
-    }, 200);
+    }, 300);
   }
 
   // FADE SECTIONS
