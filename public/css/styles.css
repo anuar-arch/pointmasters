@@ -48,7 +48,7 @@
   padding-top: 80px;
 }
 
-/* ESTA CAPA LE DA EL TONO VERDE REAL */
+/* OVERLAY */
 .hero-overlay {
   position: absolute;
   width: 100%;
@@ -59,7 +59,7 @@
   );
 }
 
-/* RECUADRO */
+/* HERO CONTENT + ANIMATION */
 .hero-content {
   position: relative;
   background: rgba(8, 20, 35, 0.95);
@@ -70,12 +70,36 @@
   max-width: 650px;
   width: 90%;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1.2s ease;
 }
 
+.hero-content.hero-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* HERO TITLE */
 .hero-title {
-  font-size: 34px;
+  font-size: 72px;
   font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 6px;
+
+  background: linear-gradient(90deg, #ffffff, #1db954, #ffffff);
+  background-size: 200% auto;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  animation: gradientMove 4s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
 }
 
 .hero-subtitle {
@@ -85,7 +109,7 @@
   opacity: 0.85;
 }
 
-/* BOTONES VERDES */
+/* BOTONES */
 .hero-buttons {
   display: flex;
   justify-content: center;
@@ -133,8 +157,19 @@
   background: #f4f4f4;
 }
 
-/* ===== TORNEOS TIPO NETFLIX MÁS ELEGANTE ===== */
+/* FADE SECTIONS */
+.fade-section {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
 
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* TORNEOS */
 #torneosContainer {
   display: flex;
   justify-content: center;
@@ -162,8 +197,7 @@
   display: block;
 }
 
-/* ===== PAGOS CARD ===== */
-
+/* PAGOS */
 .pagos-card {
   max-width: 420px;
   margin: 40px auto;
@@ -174,13 +208,9 @@
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-/* ============================= */
-/*        RESPONSIVE MOBILE      */
-/* ============================= */
-
+/* RESPONSIVE */
 @media (max-width: 768px) {
 
-  /* NAVBAR */
   .navbar {
     padding: 10px 20px;
   }
@@ -190,15 +220,14 @@
     font-size: 14px;
   }
 
-  /* HERO */
   .hero {
     min-height: 85vh;
     padding-top: 100px;
   }
 
   .hero-title {
-    font-size: 26px;
-    letter-spacing: 1px;
+    font-size: 42px;
+    letter-spacing: 3px;
   }
 
   .hero-subtitle {
@@ -209,7 +238,6 @@
     padding: 24px;
   }
 
-  /* TORNEOS */
   #torneosContainer {
     gap: 20px;
   }
@@ -222,12 +250,10 @@
     height: 320px;
   }
 
-  /* SECCIONES */
   .section {
     padding: 50px 20px;
   }
 
-  /* PAGOS */
   .pagos-card {
     margin: 30px 20px;
     padding: 24px;

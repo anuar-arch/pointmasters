@@ -33,10 +33,12 @@ function renderTorneos() {
   if (!contenedor) return;
 
   contenedor.innerHTML = torneos.map(t => `
-    <div class="torneo-card">
+    <div class="torneo-card fade-section">
       <img src="${t.flyer}" class="torneo-img">
     </div>
   `).join("");
+
+  activarFade();
 }
 
 
@@ -49,7 +51,7 @@ function renderPagos() {
   if (!contenedor) return;
 
   contenedor.innerHTML = `
-    <div class="pagos-card">
+    <div class="pagos-card fade-section">
       <p><strong>Banco:</strong> ${pagos.banco}</p>
       <p><strong>Titular:</strong> ${pagos.titular}</p>
       <p><strong>CLABE:</strong> ${pagos.clabe}</p>
@@ -67,6 +69,8 @@ function renderPagos() {
       </div>
     </div>
   `;
+
+  activarFade();
 }
 
 function copiarClabe() {
@@ -74,7 +78,44 @@ function copiarClabe() {
   alert("CLABE copiada");
 }
 
+
+/* =====================================
+   ANIMACIONES
+   ===================================== */
+
+function activarFade() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll(".fade-section").forEach(section => {
+    observer.observe(section);
+  });
+}
+
+
+/* HERO ANIMATION */
+
+function activarHero() {
+  const hero = document.querySelector(".hero-content");
+  if (!hero) return;
+
+  setTimeout(() => {
+    hero.classList.add("hero-visible");
+  }, 300);
+}
+
+
+/* =====================================
+   INIT
+   ===================================== */
+
 document.addEventListener("DOMContentLoaded", () => {
   renderTorneos();
   renderPagos();
+  activarHero();
 });
