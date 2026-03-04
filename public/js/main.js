@@ -45,10 +45,41 @@ function renderPagos() {
 }
 
 /* =========================
+   RESULTADOS EN TIEMPO REAL
+========================= */
+
+function renderResultados() {
+  const contenedor = document.getElementById("resultadosContainer");
+  if (!contenedor) return;
+
+  const linkResultados = "https://1drv.ms/x/c/983d63ddcfada96f/IQCiUEC4Bt1iSKl_7rl4SXwzAY3YIa1OTOhGa-Jb1BS1CZY";
+
+  contenedor.innerHTML = `
+    <div style="
+      width:100%;
+      max-width:1000px;
+      margin:auto;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 20px 40px rgba(0,0,0,0.4);
+    ">
+      <iframe 
+        src="${linkResultados}"
+        width="100%"
+        height="600"
+        frameborder="0"
+        style="border:0;background:white">
+      </iframe>
+    </div>
+  `;
+}
+
+/* =========================
    INIT
 ========================= */
 
 document.addEventListener("DOMContentLoaded", function () {
   renderTorneos();
   renderPagos();
+  renderResultados();
 });
