@@ -16,6 +16,8 @@ const pagos = {
   whatsapp: "5215568016634"
 };
 
+const resultadosLink = "https://1drv.ms/x/c/983d63ddcfada96f/IQCiUEC4Bt1iSKl_7rl4SXwzAY3YIa1OTOhGa-Jb1BS1CZY";
+
 /* =========================
    RENDER FUNCTIONS
 ========================= */
@@ -44,32 +46,45 @@ function renderPagos() {
   `;
 }
 
-/* =========================
-   RESULTADOS EN TIEMPO REAL
-========================= */
-
 function renderResultados() {
   const contenedor = document.getElementById("resultadosContainer");
   if (!contenedor) return;
 
-  const linkResultados = "https://1drv.ms/x/c/983d63ddcfada96f/IQCiUEC4Bt1iSKl_7rl4SXwzAY3YIa1OTOhGa-Jb1BS1CZY";
-
   contenedor.innerHTML = `
     <div style="
-      width:100%;
-      max-width:1000px;
+      max-width:900px;
       margin:auto;
+      text-align:center;
+      padding:40px;
       border-radius:16px;
-      overflow:hidden;
+      background:rgba(8,20,35,0.95);
+      color:white;
       box-shadow:0 20px 40px rgba(0,0,0,0.4);
     ">
-      <iframe 
-        src="${linkResultados}"
-        width="100%"
-        height="600"
-        frameborder="0"
-        style="border:0;background:white">
-      </iframe>
+
+      <h3 style="margin-bottom:10px">
+        Resultados en Tiempo Real
+      </h3>
+
+      <p style="opacity:0.8;margin-bottom:25px">
+        Consulta la tabla actualizada del torneo
+      </p>
+
+      <a href="${resultadosLink}"
+         target="_blank"
+         style="
+           background:#1db954;
+           padding:12px 28px;
+           border-radius:30px;
+           color:white;
+           text-decoration:none;
+           font-weight:600;
+           display:inline-block;
+           transition:0.2s;
+         ">
+         Ver Resultados en Vivo
+      </a>
+
     </div>
   `;
 }
