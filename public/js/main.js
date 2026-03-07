@@ -46,10 +46,6 @@ function renderPagos() {
   `;
 }
 
-/* =========================
-   RESULTADOS (BOTÓN + MODAL)
-========================= */
-
 function renderResultados() {
   const contenedor = document.getElementById("resultadosContainer");
   if (!contenedor) return;
@@ -65,6 +61,7 @@ function renderResultados() {
       color:white;
       box-shadow:0 20px 40px rgba(0,0,0,0.4);
     ">
+
       <h3 style="margin-bottom:10px">
         Resultados en Tiempo Real
       </h3>
@@ -84,75 +81,17 @@ function renderResultados() {
       ">
         Ver Resultados en Vivo
       </button>
+
     </div>
   `;
 }
 
 /* =========================
-   MODAL RESULTADOS
+   RESULTADOS LINK
 ========================= */
 
 function abrirResultados() {
-  const modal = document.createElement("div");
-
-  modal.innerHTML = `
-    <div id="modalResultados" style="
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:rgba(0,0,0,0.85);
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      z-index:9999;
-      padding:40px;
-    ">
-
-      <div style="
-        position:relative;
-        width:95%;
-        max-width:1100px;
-        height:80%;
-        background:white;
-        border-radius:12px;
-        overflow:hidden;
-      ">
-
-        <button onclick="cerrarResultados()" style="
-          position:absolute;
-          top:10px;
-          right:15px;
-          background:#111;
-          color:white;
-          border:none;
-          border-radius:50%;
-          width:35px;
-          height:35px;
-          cursor:pointer;
-          font-size:18px;
-        ">×</button>
-
-        <iframe 
-          src="${resultadosLink}"
-          width="100%"
-          height="100%"
-          frameborder="0"
-          style="border:none">
-        </iframe>
-
-      </div>
-
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-}
-
-function cerrarResultados() {
-  const modal = document.getElementById("modalResultados");
-  if (modal) modal.remove();
+  window.open(resultadosLink, "_blank");
 }
 
 /* =========================
